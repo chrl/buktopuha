@@ -1,0 +1,17 @@
+{
+    "name": "chrl/buktopuha",
+    "description": "Telegram bot for playing Russian Trivia game over Telegram",
+    "type": "project",
+    "require": {
+        "squizlabs/php_codesniffer": "^2.6",
+        "codeception/codeception": "^2.2",
+        "robmorgan/phinx": "^0.6.4"
+    },
+    "authors": [
+        {
+            "name": "Kirill Kholodilin",
+            "email": "kirill.kholodilin@hitmeister.de"
+        }
+    ],
+    "minimum-stability": "dev"
+}
