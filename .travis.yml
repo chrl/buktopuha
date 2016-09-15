@@ -8,15 +8,13 @@ matrix:
 
 before_install:
   - wget -O - -q 'https://02p.ru/tnotify/?ntxt=Build%20of%20chrl/buktopuha%20started' >/dev/null 2>&1
-  - sudo apt-get update > /dev/null
+  - sudo apt-get update -qq > /dev/null
   - phpenv config-rm xdebug.ini
-
 install:
   - sudo apt-get install -y --force-yes php5-mysql
-  - composer --no-progress --no-suggests install
+  - composer -n --no-progress --no-suggest install
 script: vendor/bin/phpcs --colors src/
 after_success:
   - wget -O - -q 'https://02p.ru/tnotify/?ntxt=Build%20of%20chrl/buktopuha%20succeeded!' >/dev/null 2>&1
 after_failure:
   - wget -O - -q 'https://02p.ru/tnotify/?ntxt=Build%20of%20chrl/buktopuha%20failed%20:(' >/dev/null 2>&1
-
