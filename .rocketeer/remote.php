@@ -30,7 +30,7 @@ return [
     // Use this to list folders that need to keep their state, like
     // user uploaded data, file-based databases, etc.
     'shared'         => [
-        'storage/logs',
+        'var/logs',
         'storage/questions'
     ],
 
@@ -60,6 +60,7 @@ return [
         // The folders and files to set as web writable
         'files'    => [
             'storage',
+            'var'
         ],
 
         // Here you can configure what actions will be executed to set

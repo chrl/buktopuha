@@ -11,7 +11,9 @@
  * @link     https://take2.ru/
  */
 namespace AppBundle;
+
 use Symfony\Component\HttpKernel\Bundle\Bundle;
+
 /**
  * Bundle class
  *

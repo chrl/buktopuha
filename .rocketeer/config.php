@@ -11,22 +11,40 @@ return [
     'logs'             => function (ConnectionsHandler $connections) {
         return sprintf('%s-%s-%s.log', $connections->getConnection(), $connections->getStage(), date('Ymd'));
     },
-    'default'          => ['production'],
+    'default'          => ['staging'],
     'connections'      => [
         'production' => [
-            'host'      => '02p.ru',
+            'host'      => 'take2.ru',
             'username'  => 'root',
             'password'  => '',
-            'key'       => '',
+            'key'       => null,
             'keyphrase' => null,
             'agent'     => '',
             'db_role'   => true,
         ],
+        'staging' => [
+            'host'      => 'take2.ru',
+            'username'  => 'root',
+            'password'  => '',
+            'key'       => null,
+            'keyphrase' => null,
+            'agent'     => '',
+            'db_role'   => true,
+        ],
+        
     ],
     'use_roles'        => false,
     'on'               => [
-        'stages'      => [],
-        'connections' => [],
+    'staging' => array(
+	
+    	    'root_directory' => '/home/stage/',
+        
+    ),
+    'production' => array(
+	
+    	    'root_directory' => '/home/www/',
+    	
+    ),
     ],
 
 ];
