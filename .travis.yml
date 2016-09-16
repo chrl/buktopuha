@@ -13,7 +13,7 @@ before_install:
 install:
   - sudo apt-get install -y --force-yes php5-mysql
   - composer -n --no-progress --no-suggest install
-script: vendor/bin/phpcs --colors src/
+script: vendor/bin/phpcs --colors --standard=PSR-2 src/
 after_success:
   - wget -O - -q 'https://02p.ru/tnotify/?ntxt=Build%20of%20chrl/buktopuha%20succeeded!' >/dev/null 2>&1
 after_failure:
