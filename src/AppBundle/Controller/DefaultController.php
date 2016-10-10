@@ -34,7 +34,7 @@ class DefaultController extends Controller
      *
      * @Route("/", name="homepage")
      *
-     * @return \HttpResponse
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction(Request $request)
     {
