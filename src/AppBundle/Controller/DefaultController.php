@@ -43,6 +43,7 @@ class DefaultController extends Controller
             'default/index.html.twig',
             [
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
+            'has_session' => $request->hasSession()
             ]
         );
     }
