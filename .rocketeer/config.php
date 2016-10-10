@@ -15,7 +15,7 @@ return [
     'connections'      => [
         'production' => [
             'host'      => 'take2.ru',
-            'username'  => 'root',
+            'username'  => 'deploy',
             'password'  => '',
             'key'       => null,
             'keyphrase' => null,
@@ -24,7 +24,7 @@ return [
         ],
         'staging' => [
             'host'      => 'take2.ru',
-            'username'  => 'root',
+            'username'  => 'deploy',
             'password'  => '',
             'key'       => null,
             'keyphrase' => null,
