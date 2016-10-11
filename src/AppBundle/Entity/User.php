@@ -58,7 +58,7 @@ class User
     /**
      * @var integer
      *
-     * @ORM\Column(name="chat_id", type="bigint", nullable="false")
+     * @ORM\Column(name="chat_id", type="bigint", nullable=false)
      */
     protected $chatId;
 }
