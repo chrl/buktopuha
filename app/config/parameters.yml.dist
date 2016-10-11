@@ -22,3 +22,4 @@ parameters:
     # Telegram bot settings
     telegram_bot_token:  ThisTokenIsNotATokenChangeIt
     telegram_bot_domain: example.com
+    telegram_bot_name:   BuktoBot

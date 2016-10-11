@@ -69,6 +69,7 @@ swiftmailer:
 
 shaygan_telegram_bot_api:
     token: '%telegram_bot_token%'
+    bot_name: '%telegram_bot_name%'
     webhook:
         domain: '%telegram_bot_domain%'
         path_prefix: ~ # you can add prefix, if your web site is not on the root
