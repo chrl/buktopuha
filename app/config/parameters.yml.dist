@@ -17,3 +17,8 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+
+    # Telegram bot settings
+    telegram_bot_token:  ThisTokenIsNotATokenChangeIt
+    telegram_bot_domain: example.com
