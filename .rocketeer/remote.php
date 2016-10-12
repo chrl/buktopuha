@@ -70,7 +70,7 @@ return [
             return [
                 sprintf('chmod -R 775 %s', $file),
                 sprintf('chmod -R g+s %s', $file),
-            //    sprintf('chown -R www-data:www-data %s', $file),
+                sprintf('chown -R www-data:www-data %s', $file),
             ];
         },
 

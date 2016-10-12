@@ -73,4 +73,4 @@ shaygan_telegram_bot_api:
     webhook:
         domain: '%telegram_bot_domain%'
         path_prefix: ~ # you can add prefix, if your web site is not on the root
-        update_receiver: shaygan.my_update_receiver # sample update receiver
+        update_receiver: app.update_receiver

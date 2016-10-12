@@ -4,6 +4,6 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    app.update_receiver:
+        class: AppBundle\UpdateReceiver\UpdateReceiver
+        arguments: ['@shaygan.telegram_bot_api', '%shaygan_telegram_bot_api.config%']
