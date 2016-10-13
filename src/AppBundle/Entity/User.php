@@ -61,4 +61,18 @@ class User
      * @ORM\Column(name="chat_id", type="bigint", nullable=false)
      */
     protected $chatId;
+	/**
+	 * @var string
+	 *
+	 * @ORM\Column(name="name", type="text")
+	 */
+	protected $name;
+
+
+	/**
+	 * @var integer
+	 *
+	 * @ORM\Column(name="points", type="bigint")
+	 */
+	protected $points;
 }

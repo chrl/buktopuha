@@ -33,7 +33,7 @@ return [
         ],
         
     ],
-    'use_roles'        => false,
+    'use_roles'        => true,
     'on'               => [
     'staging' => array(
 	

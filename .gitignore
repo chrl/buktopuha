@@ -16,3 +16,4 @@
 /web/bundles/
 composer.lock
 tests/_output/*
+.rocketeer/logs
