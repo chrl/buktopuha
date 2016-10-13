@@ -36,14 +36,14 @@ return [
     'use_roles'        => true,
     'on'               => [
     'staging' => array(
-	
-    	    'root_directory' => '/home/stage/',
+    
+            'root_directory' => '/home/stage/',
         
     ),
     'production' => array(
-	
-    	    'root_directory' => '/home/www/',
-    	
+    
+            'root_directory' => '/home/www/',
+        
     ),
     ],
 

@@ -7,5 +7,5 @@ Rocketeer::before('dependencies', array(
 ));
 
 Rocketeer::after("deploy", array(
-	'bin/console doctrine:schema:update --force',
+    'bin/console doctrine:schema:update --force',
 ));

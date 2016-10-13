@@ -27,7 +27,15 @@ return [
 
     'composer'     => [
         'install' => function (Composer $composer, $task) {
-            return $composer->install([], ['--no-interaction' => null,'--no-progress'=>null,'--no-suggest'=>null, '--prefer-dist' => null]);
+            return $composer->install(
+                [],
+                [
+                    '--no-interaction' => null,
+                    '--no-progress'=>null,
+                    '--no-suggest'=>null,
+                    '--prefer-dist' => null
+                ]
+            );
         },
         'update'  => function (Composer $composer) {
             return $composer->update();
