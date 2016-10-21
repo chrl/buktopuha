@@ -9,3 +9,7 @@ Rocketeer::before('dependencies', array(
 Rocketeer::after("deploy", array(
     'bin/console doctrine:schema:update --force',
 ));
+
+Rocketeer::before('dependencies', function ($task) {
+	$task->share('app/config/parameters.yml');
+});
