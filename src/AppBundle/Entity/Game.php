@@ -71,5 +71,4 @@ class Game
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\User", mappedBy="gameId")
      */
     public $users;
-    
 }

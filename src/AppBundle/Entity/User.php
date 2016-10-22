@@ -83,5 +83,4 @@ class User
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Game", inversedBy="users")
      */
     public $gameId;
-
 }
