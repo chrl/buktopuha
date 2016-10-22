@@ -60,7 +60,8 @@ return [
         // The folders and files to set as web writable
         'files'    => [
             'storage',
-            'var'
+            'var',
+            'app/config/parameters.yml
         ],
 
         // Here you can configure what actions will be executed to set
