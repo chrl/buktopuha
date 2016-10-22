@@ -61,7 +61,7 @@ return [
         'files'    => [
             'storage',
             'var',
-            'app/config/parameters.yml
+            'app/config/parameters.yml'
         ],
 
         // Here you can configure what actions will be executed to set
