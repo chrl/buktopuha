@@ -8,13 +8,9 @@ Rocketeer::before('dependencies', array(
 
 
 Rocketeer::after("deploy", array(
-	'cp /home/deploy/shared/var/parameters.yml app/config/parameters.yml',
+	'cp /home/deploy/buktopuha/shared/var/parameters.yml app/config/parameters.yml',
 ));
 
 Rocketeer::after("deploy", array(
     'bin/console doctrine:schema:update --force',
 ));
-
-Rocketeer::before('dependencies', function ($task) {
-	$task->share('app/config/parameters.yml');
-});
