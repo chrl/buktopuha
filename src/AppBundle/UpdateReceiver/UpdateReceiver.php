@@ -20,6 +20,7 @@ class UpdateReceiver implements UpdateReceiverInterface
 
     public function handleUpdate(Update $update)
     {
+        $message = json_decode(json_encode($update->message), true);
         $this->telegramBotApi->sendMessage($message['chat']['id'], 'Hello from Buktopuha, %username%');
     }
 }
