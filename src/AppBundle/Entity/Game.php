@@ -5,13 +5,13 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class User
+ * Class Game
  * @package AppBundle\Entity
  *
  * @ORM\Entity
- * @ORM\Table(name="user")
+ * @ORM\Table(name="game")
  */
-class User
+class Game
 {
     /**
      * @return mixed
@@ -23,7 +23,7 @@ class User
 
     /**
      * @param mixed $id
-     * @return User
+     * @return Game
      */
     public function setId($id)
     {
@@ -48,7 +48,6 @@ class User
         $this->chatId = $chatId;
         return $this;
     }
-
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -68,20 +67,9 @@ class User
      * @ORM\Column(name="name", type="text")
      */
     protected $name;
-
-
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="points", type="bigint")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\User", mappedBy="gameId")
      */
-    protected $points;
-
-    /**
-     * @var integer
-     *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Game", inversedBy="users")
-     */
-    public $gameId;
-
+    public $users;
+    
 }
