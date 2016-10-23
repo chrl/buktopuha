@@ -21,5 +21,6 @@ install:
 script: vendor/bin/phpcs --colors --standard=PSR2 src/
 after_success:
   - wget -O - -q 'https://02p.ru/tnotify/?ntxt=Build%20of%20chrl/buktopuha%20succeeded!' >/dev/null 2>&1
+
 after_failure:
   - wget -O - -q 'https://02p.ru/tnotify/?ntxt=Build%20of%20chrl/buktopuha%20failed%20:(' >/dev/null 2>&1

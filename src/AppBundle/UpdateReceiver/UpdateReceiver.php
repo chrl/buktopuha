@@ -9,13 +9,11 @@ use Shaygan\TelegramBotApiBundle\UpdateReceiver\UpdateReceiverInterface;
 class UpdateReceiver implements UpdateReceiverInterface
 {
 
-    private $config;
     private $telegramBotApi;
 
     public function __construct(TelegramBotApi $telegramBotApi, $config)
     {
         $this->telegramBotApi = $telegramBotApi;
-        $this->config = $config;
     }
 
     public function handleUpdate(Update $update)
