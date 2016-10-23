@@ -32,7 +32,7 @@ class DefaultController extends Controller
      *
      * @param Request $request Request object of the webapp
      *
-     * @Route("/", name="homepage")
+     * @Route("/", name="homepage", methods={"get","post"})
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
