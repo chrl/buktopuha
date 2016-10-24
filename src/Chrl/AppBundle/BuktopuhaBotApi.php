@@ -14,14 +14,11 @@ class BuktopuhaBotApi extends BotApi implements ContainerAwareInterface
 	public function setContainer(ContainerInterface $container = null)
 	{
 		$this->container = $container;
+		$token = $this->container->getParameter('buktopuha.config');
+
+		parent::__construct($token);
 	}
-
-	public function __construct()
-    {
-        $token = $this->container->getParameter('buktopuha.config');
-        parent::__construct($token['token']);
-    }
-
+	
     /**
      * @param string $token
      */
