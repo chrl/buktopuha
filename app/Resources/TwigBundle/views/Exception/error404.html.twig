@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="{{ _charset }}" />
+        <title>Page not found: {{ status_text }}</title>
+    </head>
+    <body>
+        <h1>Oops! An Error Occurred</h1>
+        <h2>The server returned a "{{ status_code }} {{ status_text }}".</h2>
+
+        <div>
+            Please return to <a href="{{ path('homepage') }}">homepage</a>!
+        </div>
+    </body>
+</html>
