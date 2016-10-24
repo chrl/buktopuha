@@ -1,8 +1,9 @@
 chrl_buktopuha_webhook:
     path:     /telegram-bot/setup-webhook/{secret}
     defaults: { _controller: AppBundle:Telegram:setupWebhook, secret: null }
-    
+    methods: ["get"]
 chrl_buktopuha_update:
     path:     /telegram-bot/update/{secret}
     defaults: { _controller: AppBundle:Telegram:update, secret: null }
+    methods: ["post"]
 
