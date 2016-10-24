@@ -1,8 +1,6 @@
 <?php
 namespace Chrl\AppBundle;
 
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use TelegramBot\Api\BotApi;
 
 class BuktopuhaBotApi extends BotApi
