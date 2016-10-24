@@ -55,11 +55,10 @@ class TelegramController extends Controller
 
         $data = json_decode($data0);
 
-        $api = $this->get("buktopuha.telegram_bot_api");
         $config = $this->getParameter("buktopuha.config");
 
         if (empty($config['webhook']['update_receiver'])) {
-            throw new Exception("'webhook.update_receiver' is not valud service name", 0);
+            throw new Exception("'webhook.update_receiver' for $secret is not valud service name", 0);
         }
 
         $updateReceiver = $this->getUpdateReceiverService($config['webhook']['update_receiver']);
