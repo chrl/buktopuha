@@ -38,9 +38,9 @@ class TelegramController extends Controller
         if (empty($config['webhook']['domain'])) {
             throw new Exception("buktopuha.webhook.domain' is not set in config.yml", 0);
         }
-        $url = "https://" . $config['webhook']['domain'] . $config['webhook']['path_prefix'] . "/telegram-bot/update";
+        $url = "https://".$config['webhook']['domain'].$config['webhook']['path_prefix']."/telegram-bot/update";
         if (null !== $secret) {
-            $url .= "/" . $secret;
+            $url .= "/".$secret;
         }
         $res = $api->setwebhook($url);
         return new JsonResponse([
