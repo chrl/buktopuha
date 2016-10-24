@@ -1,5 +1,4 @@
 services:
     buktopuha.telegram_bot_api:
         class: Chrl\AppBundle\BuktopuhaBotApi
-        calls:
-            - [setContainer, ['@service_container']]
+        arguments: ['%buktopuha.config%']

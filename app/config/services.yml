@@ -7,4 +7,4 @@ services:
     app.update_receiver:
         class: Chrl\AppBundle\UpdateReceiver\UpdateReceiver
         arguments: ['@buktopuha.telegram_bot_api', '%buktopuha.config%']
-        
+

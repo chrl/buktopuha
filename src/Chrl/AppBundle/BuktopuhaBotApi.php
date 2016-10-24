@@ -5,19 +5,15 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use TelegramBot\Api\BotApi;
 
-class BuktopuhaBotApi extends BotApi implements ContainerAwareInterface
+class BuktopuhaBotApi extends BotApi
 {
+    public $token;
 
-	public $container;
-	public $token;
-
-	public function setContainer(ContainerInterface $container = null)
-	{
-		$this->container = $container;
-		$token = $this->container->getParameter('buktopuha.config');
-
-		parent::__construct($token);
-	}
+    public function __construct($config)
+    {
+        $this->token = $config['token'];
+        parent::__construct($this->token);
+    }
 
     /**
      * @param string $token
