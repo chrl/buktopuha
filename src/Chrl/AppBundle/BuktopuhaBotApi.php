@@ -18,7 +18,7 @@ class BuktopuhaBotApi extends BotApi implements ContainerAwareInterface
 
 		parent::__construct($token);
 	}
-	
+
     /**
      * @param string $token
      */
