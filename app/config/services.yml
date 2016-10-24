@@ -5,5 +5,5 @@ parameters:
 
 services:
     app.update_receiver:
-        class: AppBundle\UpdateReceiver\UpdateReceiver
-        arguments: ['@shaygan.telegram_bot_api', '%shaygan_telegram_bot_api.config%']
+        class: Chrl\AppBundle\UpdateReceiver\UpdateReceiver
+        arguments: ['@buktopuha.telegram_bot_api', '%buktopuha.config%']

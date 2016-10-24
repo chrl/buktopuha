@@ -1,0 +1,4 @@
+services:
+    buktopuha.telegram_bot_api:
+        class: Chrl\AppBundle\BuktopuhaBotApi
+        arguments: ['@service_container']

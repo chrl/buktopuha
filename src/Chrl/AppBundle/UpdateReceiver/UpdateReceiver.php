@@ -1,10 +1,9 @@
 <?php
 
-namespace AppBundle\UpdateReceiver;
+namespace Chrl\AppBundle\UpdateReceiver;
 
-use Shaygan\TelegramBotApiBundle\TelegramBotApi;
-use Shaygan\TelegramBotApiBundle\Type\Update;
-use Shaygan\TelegramBotApiBundle\UpdateReceiver\UpdateReceiverInterface;
+use Chrl\AppBundle\BuktopuhaBotApi;
+use Chrl\AppBundle\Type\Update;
 
 class UpdateReceiver implements UpdateReceiverInterface
 {
@@ -12,7 +11,7 @@ class UpdateReceiver implements UpdateReceiverInterface
     private $config;
     private $telegramBotApi;
 
-    public function __construct(TelegramBotApi $telegramBotApi, $config)
+    public function __construct(BuktopuhaBotApi $telegramBotApi, $config)
     {
         $this->telegramBotApi = $telegramBotApi;
         $this->config = $config;

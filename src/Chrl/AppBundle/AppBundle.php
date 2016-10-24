@@ -12,6 +12,7 @@
  */
 namespace Chrl\AppBundle;
 
+use Chrl\AppBundle\DependencyInjection\BuktopuhaExtension;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
@@ -26,4 +27,8 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 class AppBundle extends Bundle
 {
+	public function getContainerExtension()
+	{
+		return new BuktopuhaExtension();
+	}
 }

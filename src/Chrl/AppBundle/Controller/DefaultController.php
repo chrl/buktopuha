@@ -10,7 +10,7 @@
  * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
  * @link     https://take2.ru/
  */
-namespace AppBundle\Controller;
+namespace Chrl\AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
