@@ -23,5 +23,4 @@ class Update extends Type
     {
         parent::loadResult($obj);
     }
-
 }

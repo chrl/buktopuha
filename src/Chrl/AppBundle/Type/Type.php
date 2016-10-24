@@ -24,5 +24,4 @@ abstract class Type implements TypeInterface
             $this->$key = $value;
         }
     }
-
 }
