@@ -10,7 +10,7 @@
  * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
  * @link     https://take2.ru/
  */
-namespace AppBundle;
+namespace Chrl\AppBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

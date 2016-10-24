@@ -11,7 +11,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "": "src/"
+            "Chrl\\": "src/Chrl/"
         },
         "classmap": [
             "app/AppKernel.php",
