@@ -21,6 +21,22 @@ class Game
     protected $id;
 
     /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="chat_id", type="bigint", nullable=false)

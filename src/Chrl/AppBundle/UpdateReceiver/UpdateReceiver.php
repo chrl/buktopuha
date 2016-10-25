@@ -4,6 +4,7 @@ namespace Chrl\AppBundle\UpdateReceiver;
 
 use Chrl\AppBundle\BuktopuhaBotApi;
 use Chrl\AppBundle\Entity\Game;
+use Chrl\AppBundle\Entity\User;
 use Chrl\AppBundle\Type\Update;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -24,10 +25,10 @@ class UpdateReceiver implements UpdateReceiverInterface
     public function handleUpdate(Update $update)
     {
         $message = json_decode(json_encode($update->message), true);
-        $game = $this->findGame($message);
+        $user = $this->getCurrentUser($message);
         $this->telegramBotApi->sendMessage(
             $message['chat']['id'],
-            'Hello from '.$this->config['bot_name'].' in game "'.$game->title.'"!'
+            '@'.$user->getAlias().', hello from '.$this->config['bot_name']
         );
     }
 
@@ -47,5 +48,24 @@ class UpdateReceiver implements UpdateReceiverInterface
             $this->entityManager->flush();
         }
         return $game;
+    }
+
+
+    public function getCurrentUser(array $message)
+    {
+        $user = $this->entityManager->getRepository('AppBundle:User')->findOneBy(['tgId'=>$message['from']['id']]);
+        if (!$user) {
+            $user = new User();
+            $user->setName($message['from']['first_name'].' '.$message['from']['last_name']);
+            $user->setAlias($message['from']['username']);
+            $user->setTgId($message['from']['id']);
+            $user->setGame($this->findGame($message));
+            $user->setChatId($message['chat']['id']);
+            $user->setPoints(0);
+
+            $this->entityManager->persist($user);
+            $this->entityManager->flush();
+        }
+        return $user;
     }
 }

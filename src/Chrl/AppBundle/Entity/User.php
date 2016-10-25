@@ -62,6 +62,92 @@ class User
      * @ORM\Column(name="chat_id", type="bigint", nullable=false)
      */
     protected $chatId;
+
+    /**
+     * @ORM\Column(name="telegram_id", type="bigint")
+     */
+    protected $tgId;
+
+    /**
+     * @return mixed
+     */
+    public function getTgId()
+    {
+        return $this->tgId;
+    }
+
+    /**
+     * @param mixed $tgId
+     */
+    public function setTgId($tgId)
+    {
+        $this->tgId = $tgId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAlias()
+    {
+        return $this->alias;
+    }
+
+    /**
+     * @param string $alias
+     */
+    public function setAlias($alias)
+    {
+        $this->alias = $alias;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPoints()
+    {
+        return $this->points;
+    }
+
+    /**
+     * @param int $points
+     */
+    public function setPoints($points)
+    {
+        $this->points = $points;
+    }
+
+    /**
+     * @return int
+     */
+    public function getGame()
+    {
+        return $this->game;
+    }
+
+    /**
+     * @param int $game
+     */
+    public function setGame($game)
+    {
+        $this->game = $game;
+    }
+
     /**
      * @var string
      *
@@ -69,6 +155,12 @@ class User
      */
     protected $name;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="alias", type="string")
+     */
+    protected $alias;
 
     /**
      * @var integer
@@ -82,5 +174,5 @@ class User
      *
      * @ORM\ManyToOne(targetEntity="Chrl\AppBundle\Entity\Game", inversedBy="users")
      */
-    public $gameId;
+    public $game;
 }
