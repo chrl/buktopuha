@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace Chrl\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -80,7 +80,7 @@ class User
     /**
      * @var integer
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Game", inversedBy="users")
+     * @ORM\ManyToOne(targetEntity="Chrl\AppBundle\Entity\Game", inversedBy="users")
      */
     public $gameId;
 }

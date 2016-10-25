@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace Chrl\AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -25,10 +25,19 @@ class Game
      *
      * @ORM\Column(name="chat_id", type="bigint", nullable=false)
      */
-    protected $chatId;
+    public $chatId;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\User", mappedBy="gameId")
+     * @ORM\OneToMany(targetEntity="Chrl\AppBundle\Entity\User", mappedBy="gameId")
      */
     public $users;
+	/**
+	 * @ORM\Column(name="status", type="smallint")
+	 */
+	public $status;
+
+	/**
+	 * @ORM\Column(name="title", type="string")
+	 */
+	public $title;
 }

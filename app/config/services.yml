@@ -6,5 +6,5 @@ parameters:
 services:
     app.update_receiver:
         class: Chrl\AppBundle\UpdateReceiver\UpdateReceiver
-        arguments: ['@buktopuha.telegram_bot_api', '%buktopuha.config%']
+        arguments: ['@buktopuha.telegram_bot_api', '%buktopuha.config%', '@doctrine.orm.entity_manager']
 
