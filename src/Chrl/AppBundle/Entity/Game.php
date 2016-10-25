@@ -31,13 +31,13 @@ class Game
      * @ORM\OneToMany(targetEntity="Chrl\AppBundle\Entity\User", mappedBy="gameId")
      */
     public $users;
-	/**
-	 * @ORM\Column(name="status", type="smallint")
-	 */
-	public $status;
+    /**
+     * @ORM\Column(name="status", type="smallint")
+     */
+    public $status;
 
-	/**
-	 * @ORM\Column(name="title", type="string")
-	 */
-	public $title;
+    /**
+     * @ORM\Column(name="title", type="string")
+     */
+    public $title;
 }
