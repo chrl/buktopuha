@@ -44,7 +44,7 @@ class Game
     public $chatId;
 
     /**
-     * @ORM\OneToMany(targetEntity="Chrl\AppBundle\Entity\User", mappedBy="gameId")
+     * @ORM\OneToMany(targetEntity="Chrl\AppBundle\Entity\User", mappedBy="game")
      */
     public $users;
     /**
