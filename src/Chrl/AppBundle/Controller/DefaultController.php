@@ -38,12 +38,18 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
+
+        $activeGames = $this->get('app.gameservice')->getActiveGames();
+        $inactiveGames = $this->get('app.gameservice')->getInactiveGames();
+
         // replace this example code with whatever you need
         return $this->render(
             'default/index.html.twig',
             [
-            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
-            'has_session' => $request->hasSession()
+                'base_dir' => basename(realpath($this->getParameter('kernel.root_dir').'/..')),
+                'has_session' => $request->hasSession(),
+                'activeGames'=>$activeGames,
+                'inactiveGames'=>$inactiveGames
             ]
         );
     }

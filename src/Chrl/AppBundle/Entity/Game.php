@@ -56,4 +56,8 @@ class Game
      * @ORM\Column(name="title", type="string")
      */
     public $title;
+    /**
+     * @ORM\Column(type="string")
+     */
+    public $publicLink;
 }

@@ -4,7 +4,11 @@ parameters:
 #    parameter_name: value
 
 services:
+    app.gameservice:
+        class: Chrl\AppBundle\Service\GameService
+        arguments: ['@buktopuha.telegram_bot_api', '%buktopuha.config%', '@doctrine.orm.entity_manager']
+
     app.update_receiver:
         class: Chrl\AppBundle\UpdateReceiver\UpdateReceiver
-        arguments: ['@buktopuha.telegram_bot_api', '%buktopuha.config%', '@doctrine.orm.entity_manager']
+        arguments: ['@buktopuha.telegram_bot_api', '%buktopuha.config%', '@doctrine.orm.entity_manager', '@app.gameservice']
 
