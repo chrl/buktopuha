@@ -37,18 +37,41 @@ class UpdateReceiver implements UpdateReceiverInterface
     public function handleUpdate(Update $update)
     {
         $message = json_decode(json_encode($update->message), true);
-
         file_put_contents('/tmp/messages.tg.bot', json_encode($message), FILE_APPEND);
 
         $user = $this->gameService->getCurrentUser($message);
 
-        $gameAction = $this->commandPool->setGameService($this->gameService)->findAction($message);
 
-        if (!$gameAction instanceof GameActionInterface) {
-            $this->gameService->checkAnswer($message);
-            return;
+        if (isset($message['text'])) {
+            $gameAction = $this->commandPool->setGameService($this->gameService)->findAction($message);
+
+            if (!$gameAction instanceof GameActionInterface) {
+                $this->gameService->checkAnswer($message);
+                return;
+            }
+
+            $gameAction->run($message, $user);
+        } else {
+            // handle possible joins/lefts
+            $this->handleJoin($message);
         }
+    }
 
-        $gameAction->run($message, $user);
+    public function handleJoin($message)
+    {
+        if (isset($message['new_chat_participant'])) {
+            if ($message['new_chat_participant']['username']==$this->config['bot_name']) {
+                $this->telegramBotApi->sendMessage(
+                    $message['chat']['id'],
+                    'Thank you for inviting me to the group! Press /start to start the game!'
+                );
+            } else {
+                $this->telegramBotApi->sendMessage(
+                    $message['chat']['id'],
+                    'Welcome to the group, @'.
+                    $message['new_chat_participant']['username'].'! Feel free to join the game!'
+                );
+            }
+        }
     }
 }

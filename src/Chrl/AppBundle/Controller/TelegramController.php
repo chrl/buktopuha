@@ -54,7 +54,6 @@ class TelegramController extends Controller
         $data0 = $request->getContent();
 
         $data = json_decode($data0);
-
         $config = $this->getParameter("buktopuha.config");
 
         if (empty($config['webhook']['update_receiver'])) {
