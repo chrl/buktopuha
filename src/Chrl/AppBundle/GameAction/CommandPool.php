@@ -32,13 +32,13 @@ class CommandPool
     {
         $text = trim($message['text']);
 
-        if (false!== strpos($text, ' ')) {
+        if (false !== strpos($text, ' ')) {
             return false;
         }
 
         $text = str_replace('/', '', $text);
         $text = str_replace('@'.$this->botApi->getBotName(), '', $text);
-        $text='Chrl\AppBundle\GameAction\\'.ucfirst(strtolower($text)).'Action';
+        $text = 'Chrl\AppBundle\GameAction\\'.ucfirst(strtolower($text)).'Action';
 
         if (class_exists($text, true)) {
 

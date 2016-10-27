@@ -27,6 +27,9 @@ class GameService
     }
 
 
+    /**
+     * @return integer
+     */
     public function findGame(array $message)
     {
         $game = $this->em->getRepository('AppBundle:Game')->findOneBy(['chatId'=>$message['chat']['id']]);
