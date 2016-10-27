@@ -74,4 +74,8 @@ class GameService
         $games = $this->em->getRepository('AppBundle:Game')->findBy(['status'=>0]);
         return $games;
     }
+
+    public function checkAnswer($message) {
+    	//TODO: Check answer here
+	}
 }

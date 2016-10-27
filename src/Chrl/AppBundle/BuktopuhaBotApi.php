@@ -7,9 +7,12 @@ class BuktopuhaBotApi extends BotApi
 {
     public $token;
 
+	public $botName;
+
     public function __construct($config)
     {
         $this->token = $config['token'];
+		$this->botName = $config['bot_name'];
         parent::__construct($this->token);
     }
 
@@ -20,4 +23,12 @@ class BuktopuhaBotApi extends BotApi
     {
         $this->token = $token;
     }
+
+	/**
+	 * @return string
+	 */
+	public function getBotName()
+	{
+		return $this->botName;
+	}
 }
