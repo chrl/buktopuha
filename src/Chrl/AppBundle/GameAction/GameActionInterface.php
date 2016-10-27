@@ -8,8 +8,7 @@
 
 namespace Chrl\AppBundle\GameAction;
 
-
 interface GameActionInterface
 {
-	public function run($message,$user);
+    public function run($message, $user);
 }

@@ -75,7 +75,8 @@ class GameService
         return $games;
     }
 
-    public function checkAnswer($message) {
-    	//TODO: Check answer here
-	}
+    public function checkAnswer($message)
+    {
+        //TODO: Check answer here
+    }
 }

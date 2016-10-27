@@ -17,40 +17,38 @@ class UpdateReceiver implements UpdateReceiverInterface
     private $entityManager;
 
     private $gameService;
-	private $commandPool;
+    private $commandPool;
 
     public function __construct(
         BuktopuhaBotApi $telegramBotApi,
         $config,
         EntityManagerInterface $entityManager,
         GameService $gameService,
-		CommandPool $commandPool
+        CommandPool $commandPool
     ) {
     
         $this->telegramBotApi = $telegramBotApi;
         $this->config = $config;
         $this->entityManager = $entityManager;
         $this->gameService = $gameService;
-		$this->commandPool = $commandPool;
+        $this->commandPool = $commandPool;
     }
 
     public function handleUpdate(Update $update)
     {
         $message = json_decode(json_encode($update->message), true);
 
-		file_put_contents('/tmp/messages.tg.bot',json_encode($message),FILE_APPEND);
+        file_put_contents('/tmp/messages.tg.bot', json_encode($message), FILE_APPEND);
 
         $user = $this->gameService->getCurrentUser($message);
 
-		$gameAction = $this->commandPool->setGameService($this->gameService)->findAction($message);
+        $gameAction = $this->commandPool->setGameService($this->gameService)->findAction($message);
 
-		if (!$gameAction instanceof GameActionInterface) {
-			$this->gameService->checkAnswer($message);
-			return;
-		}
+        if (!$gameAction instanceof GameActionInterface) {
+            $this->gameService->checkAnswer($message);
+            return;
+        }
 
-		$gameAction->run($message,$user);
-
-
+        $gameAction->run($message, $user);
     }
 }
