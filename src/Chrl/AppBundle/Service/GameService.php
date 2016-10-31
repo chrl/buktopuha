@@ -84,16 +84,16 @@ class GameService
     }
 
     public function getRandomQuestion()
-	{
-		$count = $this->em->createQueryBuilder()
-			->select('COUNT(u)')->from('AppBundle:Question','u')
-			->getQuery()
-			->getSingleScalarResult();
+    {
+        $count = $this->em->createQueryBuilder()
+            ->select('COUNT(u)')->from('AppBundle:Question','u')
+            ->getQuery()
+            ->getSingleScalarResult();
 
-		return $this->em->createQuery('SELECT c FROM AppBundle:Question c ORDER BY c.id ASC')
-			->setFirstResult(rand(0, $count - 1))
-			->setMaxResults(1)
-			->getSingleResult();
+        return $this->em->createQuery('SELECT c FROM AppBundle:Question c ORDER BY c.id ASC')
+            ->setFirstResult(rand(0, $count - 1))
+            ->setMaxResults(1)
+            ->getSingleResult();
 
-	}
+    }
 }

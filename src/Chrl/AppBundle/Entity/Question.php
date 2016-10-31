@@ -36,46 +36,46 @@ class Question
         $this->id = $id;
     }
 
-	/**
-	 * GUID Of the question -- unique
-	 *
-	 * @ORM\Column(type="string",length=32,unique=true)
-	 */
+    /**
+     * GUID Of the question -- unique
+     *
+     * @ORM\Column(type="string",length=32,unique=true)
+     */
     public $guid;
-	/**
-	 * @ORM\Column(type="text")
-	 */
-	public $text;
-	/**
-	 * @ORM\Column(type="text")
-	 */
-	public $a1;
-	/**
-	 * @ORM\Column(type="text")
-	 */
-	public $a2;
-	/**
-	 * @ORM\Column(type="text")
-	 */
-	public $a3;
-	/**
-	 * @ORM\Column(type="text")
-	 */
-	public $a4;
-	/**
-	 * @ORM\Column(type="integer")
-	 */
-	public $price;
-	/**
-	 * @ORM\Column(type="integer")
-	 */
-	public $played;
-	/**
-	 * @ORM\Column(type="integer")
-	 */
-	public $correct;
-	/**
-	 * @ORM\Column(type="string", length=30)
-	 */
-	public $category;
+    /**
+     * @ORM\Column(type="text")
+     */
+    public $text;
+    /**
+     * @ORM\Column(type="text")
+     */
+    public $a1;
+    /**
+     * @ORM\Column(type="text")
+     */
+    public $a2;
+    /**
+     * @ORM\Column(type="text")
+     */
+    public $a3;
+    /**
+     * @ORM\Column(type="text")
+     */
+    public $a4;
+    /**
+     * @ORM\Column(type="integer")
+     */
+    public $price;
+    /**
+     * @ORM\Column(type="integer")
+     */
+    public $played;
+    /**
+     * @ORM\Column(type="integer")
+     */
+    public $correct;
+    /**
+     * @ORM\Column(type="string", length=30)
+     */
+    public $category;
 }

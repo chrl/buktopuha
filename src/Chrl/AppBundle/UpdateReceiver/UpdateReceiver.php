@@ -60,7 +60,7 @@ class UpdateReceiver implements UpdateReceiverInterface
     public function handleJoin($message)
     {
         if (isset($message['new_chat_participant'])) {
-            if ($message['new_chat_participant']['username']==$this->config['bot_name']) {
+            if ($message['new_chat_participant']['username'] == $this->config['bot_name']) {
                 $this->telegramBotApi->sendMessage(
                     $message['chat']['id'],
                     'Thank you for inviting me to the group! Press /start to start the game!'
