@@ -2,6 +2,8 @@
 
 namespace Chrl\AppBundle\Service;
 
+use Chrl\AppBundle\Entity\Question;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Chrl\AppBundle\Entity\Game;
 use Chrl\AppBundle\Entity\User;
@@ -19,16 +21,20 @@ use Chrl\AppBundle\BuktopuhaBotApi;
 
 class GameService
 {
+    /** @var EntityManager */
     public $em;
+    /** @var BuktopuhaBotApi */
+    private $botApi;
 
     public function __construct(BuktopuhaBotApi $telegramBotApi, $config, EntityManagerInterface $entityManager)
     {
         $this->em = $entityManager;
+        $this->botApi = $telegramBotApi;
     }
 
 
     /**
-     * @return integer
+     * @return Game
      */
     public function findGame(array $message)
     {
@@ -80,9 +86,44 @@ class GameService
 
     public function checkAnswer($message)
     {
-        //TODO: Check answer here
+        $game = $this->findGame($message);
+        $user = $this->getCurrentUser($message);
+
+        if ($game->status == 1) {
+            /** @var Question $question */
+            $question = $this->em->getRepository('AppBundle:Question')->find($game->lastQuestion);
+
+            if (!$question) return;
+
+            if (mb_strtoupper($question->a1,'UTF-8') == mb_strtoupper($message['text'],'UTF-8')) {
+                // Correct answer!
+                $this->botApi->sendMessage($game->chatId, 'Правильно! Следующий вопрос!');
+                $question = $this->getRandomQuestion();
+
+                $game->lastQuestion = $question->getId();
+                $game->lastQuestionTime = new \DateTime('now');
+
+                $this->em->persist($game);
+                $this->em->flush();
+                $this->askQuestion($game, $question);
+
+            } else {
+                // Incorrect answer
+                $this->botApi->sendMessage($game->chatId, 'Неправильно, @'.$user->getAlias().'. Правильный ответ: *'.$question->a1.'*','markdown');
+            }
+        }
     }
 
+    public function askQuestion(Game $game, Question $question)
+    {
+        $this->botApi->sendMessage($game->chatId, '*[#вопрос]* '.$question->text,'markdown');
+    }
+
+    /**
+     * @return Question
+     * @throws \Doctrine\ORM\NoResultException
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
     public function getRandomQuestion()
     {
         $count = $this->em->createQueryBuilder()

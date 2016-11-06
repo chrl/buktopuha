@@ -13,6 +13,7 @@ use Chrl\AppBundle\Service\GameService;
 
 abstract class BaseGameAction implements GameActionInterface
 {
+    /** @var GameService */
     public $gameService;
     public $botApi;
 

@@ -64,4 +64,12 @@ class Game
      * @ORM\OneToMany(targetEntity="Chrl\AppBundle\Entity\Message", mappedBy="game")
      */
     public $messages;
+    /**
+     * @ORM\Column(type="integer",nullable=true)
+     */
+    public $lastQuestion;
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    public $lastQuestionTime;
 }
