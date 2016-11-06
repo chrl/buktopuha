@@ -103,7 +103,8 @@ class GameService
 
                 $this->botApi->sendMessage(
                     $game->chatId,
-                    'Correct! @'.$user->getAlias().' gets *'.$question->price.'* and now has *'.$user->getPoints().'*points!',null,
+                    'Correct! @'.$user->getAlias().' gets *'.$question->price.'* and now has *'.$user->getPoints().'* points!',
+                    'markdown',
                     false,
                     $message['message_id']
                 );
@@ -136,7 +137,7 @@ class GameService
 
     public function askQuestion(Game $game, Question $question)
     {
-        $this->botApi->sendMessage($game->chatId, '*question* '.$question->text,'markdown');
+        $this->botApi->sendMessage($game->chatId, '*[question]* '.$question->text,'markdown');
     }
 
     /**
