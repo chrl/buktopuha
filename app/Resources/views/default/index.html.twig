@@ -5,8 +5,8 @@
         <div id="container">
             <div id="welcome">
                 <h1>Buktopuha @ {{ constant('PHP_VERSION') }}</h1>
-                <h3>Active games: </h3>
                 {% if activeGames|length > 0 %}
+                <h3>Active games: </h3>
                 <div>
                     {% for game in activeGames %}
                         {% set ul = game.users|length %}
@@ -16,6 +16,7 @@
                 {% else %}
                     <blockquote>No active games currently. You can invite bot to your group, or start a game in inactive group, where bot sits already. Do that by typing <b>/start</b> in some of groups below.</blockquote>
                 {% endif %}
+                {% if inactiveGames|length > 0 %}
                 <h3>Inactive games: </h3>
                 <div>
                     {% for game in inactiveGames %}
@@ -27,7 +28,7 @@
                         {% endif %}
                     {% endfor %}
                 </div>
-
+                {% endif %}
             </div>
         </div>
     </div>

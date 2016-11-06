@@ -3,6 +3,7 @@
 namespace Chrl\AppBundle\UpdateReceiver;
 
 use Chrl\AppBundle\BuktopuhaBotApi;
+use Chrl\AppBundle\Entity\Message;
 use Chrl\AppBundle\GameAction\CommandPool;
 use Chrl\AppBundle\GameAction\GameActionInterface;
 use Chrl\AppBundle\Service\GameService;
@@ -44,6 +45,15 @@ class UpdateReceiver implements UpdateReceiverInterface
 
         if (isset($message['text'])) {
             $gameAction = $this->commandPool->setGameService($this->gameService)->findAction($message);
+
+            $msg = new Message();
+            $msg->user = $user;
+            $msg->date = new \DateTime("now");
+            $msg->text = $message['text'];
+            $msg->game = $this->gameService->findGame($message);
+
+            $this->gameService->em->persist($msg);
+            $this->gameService->em->flush();
 
             if (!$gameAction instanceof GameActionInterface) {
                 $this->gameService->checkAnswer($message);

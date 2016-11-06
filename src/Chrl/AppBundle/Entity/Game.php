@@ -60,4 +60,8 @@ class Game
      * @ORM\Column(type="string", nullable=true)
      */
     public $publicLink;
+    /**
+     * @ORM\OneToMany(targetEntity="Chrl\AppBundle\Entity\Message", mappedBy="game")
+     */
+    public $messages;
 }

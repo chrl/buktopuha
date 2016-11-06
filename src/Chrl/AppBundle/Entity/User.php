@@ -175,4 +175,8 @@ class User
      * @ORM\ManyToOne(targetEntity="Chrl\AppBundle\Entity\Game", inversedBy="users")
      */
     public $game;
+    /**
+     * @ORM\OneToMany(targetEntity="Chrl\AppBundle\Entity\Message", mappedBy="user")
+     */
+    public $messages;
 }
