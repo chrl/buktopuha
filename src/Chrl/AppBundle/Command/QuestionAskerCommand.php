@@ -19,6 +19,5 @@ class QuestionAskerCommand extends EndlessCommand
     // Execute will be called in a endless loop
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-
     }
 }

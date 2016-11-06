@@ -93,9 +93,11 @@ class GameService
             /** @var Question $question */
             $question = $this->em->getRepository('AppBundle:Question')->find($game->lastQuestion);
 
-            if (!$question) return;
+            if (!$question) {
+                return;
+            }
 
-            if (mb_strtoupper($question->a1,'UTF-8') == mb_strtoupper($message['text'],'UTF-8')) {
+            if (mb_strtoupper($question->a1, 'UTF-8') == mb_strtoupper($message['text'], 'UTF-8')) {
                 // Correct answer!
 
                 $user->setPoints($user->getPoints()+$question->price);
@@ -103,7 +105,8 @@ class GameService
 
                 $this->botApi->sendMessage(
                     $game->chatId,
-                    'Correct! @'.$user->getAlias().' gets *'.$question->price.'* and now has *'.$user->getPoints().'* points!',
+                    'Correct! @'.$user->getAlias().' gets *'.
+                    $question->price.'* and now has *'.$user->getPoints().'* points!',
                     'markdown',
                     false,
                     $message['message_id']
@@ -119,7 +122,6 @@ class GameService
                 $game->incorrectTries = 0;
                 
                 $this->askQuestion($game, $question);
-
             } else {
                 // Incorrect answer
                 $game->incorrectTries++;
@@ -137,7 +139,7 @@ class GameService
 
     public function askQuestion(Game $game, Question $question)
     {
-        $this->botApi->sendMessage($game->chatId, '*[question]* '.$question->text,'markdown');
+        $this->botApi->sendMessage($game->chatId, '*[question]* '.$question->text, 'markdown');
     }
 
     /**
@@ -148,7 +150,7 @@ class GameService
     public function getRandomQuestion()
     {
         $count = $this->em->createQueryBuilder()
-            ->select('COUNT(u)')->from('AppBundle:Question','u')
+            ->select('COUNT(u)')->from('AppBundle:Question', 'u')
             ->getQuery()
             ->getSingleScalarResult();
 
@@ -156,6 +158,5 @@ class GameService
             ->setFirstResult(rand(0, $count - 1))
             ->setMaxResults(1)
             ->getSingleResult();
-
     }
 }

@@ -25,8 +25,7 @@ class StartAction extends BaseGameAction implements GameActionInterface
             $this->gameService->em->persist($game);
             $this->gameService->em->flush();
             $this->botApi->sendMessage($message['chat']['id'], 'The game has started!');
-            $this->gameService->askQuestion($game,$question);
-
+            $this->gameService->askQuestion($game, $question);
         } else {
             $this->botApi->sendMessage($message['chat']['id'], 'The game is already running...');
         }
