@@ -60,7 +60,19 @@ class GameService
         $user = $this->em->getRepository('AppBundle:User')->findOneBy(['tgId'=>$message['from']['id']]);
         if (!$user) {
             $user = new User();
-            $user->setName($message['from']['first_name'].' '.$message['from']['last_name']);
+            $user->setName(
+                (
+                    isset($message['from']['first_name'])
+                    ? $message['from']['first_name']
+                    : ''
+                )
+                .' '.
+                (
+                isset($message['from']['last_name'])
+                    ? $message['from']['last_name']
+                    : ''
+                )
+            );
             $user->setAlias($message['from']['username']);
             $user->setTgId($message['from']['id']);
             $user->setGame($this->findGame($message));

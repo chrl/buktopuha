@@ -105,7 +105,7 @@ class User
      */
     public function getAlias()
     {
-        return $this->alias;
+        return str_replace('_', '\_', $this->alias);
     }
 
     /**
