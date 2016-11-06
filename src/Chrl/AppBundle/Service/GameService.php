@@ -97,7 +97,7 @@ class GameService
 
             if (mb_strtoupper($question->a1,'UTF-8') == mb_strtoupper($message['text'],'UTF-8')) {
                 // Correct answer!
-                $this->botApi->sendMessage($game->chatId, 'Правильно! Следующий вопрос!');
+                $this->botApi->sendMessage($game->chatId, 'Правильно! Следующий вопрос!',null,false,$message['id']);
                 $question = $this->getRandomQuestion();
 
                 $game->lastQuestion = $question->getId();
