@@ -151,7 +151,7 @@ class GameService
 
     public function askQuestion(Game $game, Question $question)
     {
-        $this->botApi->sendMessage($game->chatId, '*[question]* '.$question->text, 'markdown');
+        $this->botApi->sendMessage($game->chatId, '*[question]* '.$question->text.' _('.mb_strlen($question->a1,'UTF-8').'letters)_', 'markdown');
     }
 
     /**
