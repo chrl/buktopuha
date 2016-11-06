@@ -72,4 +72,9 @@ class Game
      * @ORM\Column(type="datetime", nullable=true)
      */
     public $lastQuestionTime;
+
+    /**
+     * @ORM\Column(type="smallint", nullable=true)
+     */
+    public $incorrectTries;
 }

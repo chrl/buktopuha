@@ -97,26 +97,46 @@ class GameService
 
             if (mb_strtoupper($question->a1,'UTF-8') == mb_strtoupper($message['text'],'UTF-8')) {
                 // Correct answer!
-                $this->botApi->sendMessage($game->chatId, 'Правильно! Следующий вопрос!',null,false,$message['id']);
+
+                $user->setPoints($user->getPoints()+$question->price);
+                $this->em->persist($user);
+
+                $this->botApi->sendMessage(
+                    $game->chatId,
+                    'Correct! @'.$user->getAlias().' gets *'.$question->price.'* and now has *'.$user->getPoints().'*points!',null,
+                    false,
+                    $message['message_id']
+                );
+
+                $question->correct++;
+                $this->em->persist($question);
+
                 $question = $this->getRandomQuestion();
 
                 $game->lastQuestion = $question->getId();
                 $game->lastQuestionTime = new \DateTime('now');
-
-                $this->em->persist($game);
-                $this->em->flush();
+                $game->incorrectTries = 0;
+                
                 $this->askQuestion($game, $question);
 
             } else {
                 // Incorrect answer
-                $this->botApi->sendMessage($game->chatId, 'Неправильно, @'.$user->getAlias().'. Правильный ответ: *'.$question->a1.'*','markdown');
+                $game->incorrectTries++;
+                $this->botApi->sendMessage(
+                    $game->chatId,
+                    'Wrong, @'.$user->getAlias().'. Correct answer: *'.$question->a1.'*',
+                    'markdown'
+                );
             }
+
+            $this->em->persist($game);
+            $this->em->flush();
         }
     }
 
     public function askQuestion(Game $game, Question $question)
     {
-        $this->botApi->sendMessage($game->chatId, '*[#вопрос]* '.$question->text,'markdown');
+        $this->botApi->sendMessage($game->chatId, '*question* '.$question->text,'markdown');
     }
 
     /**
