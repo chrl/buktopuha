@@ -148,7 +148,7 @@ class GameService
 					$tPos = rand(0,mb_strlen($question->a1,'UTF-8'));
 
 					while($game->hint == $hint) {
-						$hint = mb_substr($hint,0,$tPos-1,'UTF-8').
+						$hint = mb_substr($hint,0,$tPos,'UTF-8').
 								mb_substr($question->a1,$tPos,1,'UTF-8').
 								mb_substr($hint,$tPos+1,200,'UTF-8');
 					}
