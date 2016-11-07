@@ -2,6 +2,7 @@
 
 namespace Chrl\AppBundle\Service;
 
+use Chrl\AppBundle\Entity\PointLog;
 use Chrl\AppBundle\Entity\Question;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
@@ -123,6 +124,19 @@ class GameService
 
                 $user->setPoints($user->getPoints()+$question->price);
                 $this->em->persist($user);
+
+                // Log points
+
+                $pl = new PointLog();
+                $pl->date = new \DateTime("now");
+                $pl->day = date('d');
+                $pl->month = date('m');
+                $pl->year = date('Y');
+                $pl->points = $question->price;
+                $pl->userId = $user->getId();
+                $pl->gameId = $game->getId();
+
+                $this->em->persist($pl);
 
                 $this->botApi->sendMessage(
                     $game->chatId,
