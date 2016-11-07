@@ -33,15 +33,15 @@ class DeployCommand extends ContainerAwareCommand
         $gs = $this->getContainer()->get('app.gameservice');
         $tgApi = $this->getContainer()->get('buktopuha.telegram_bot_api');
         $games = $gs->getActiveGames();
+        
+        if (file_exists('var/logs/deploy.version')) {
+            $version = file_get_contents('var/logs/deploy.version');
+        } else {
+            $version = 0;
+            file_put_contents('var/logs/deploy.version', $version);
+        }
 
         if (false == $input->getOption('success')) {
-            if (file_exists('var/logs/deploy.version')) {
-                $version = file_get_contents('var/logs/deploy.version');
-            } else {
-                $version = 0;
-                file_put_contents('var/logs/deploy.version', $version);
-            }
-
             $version++;
             file_put_contents('var/logs/deploy.version', $version);
         }
