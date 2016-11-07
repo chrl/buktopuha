@@ -142,7 +142,7 @@ class GameService
                 $game->incorrectTries++;
 				$hint = $game->hint;
 
-				if (mb_substr_count($hint,'*','UTF-8') < mb_strlen($hint,'UTF-8')/2) {
+				if (mb_substr_count($hint,'*','UTF-8') >= mb_strlen($hint,'UTF-8')/2) {
 					//tell hint
 
 					$tPos = rand(0,mb_strlen($question->a1,'UTF-8'));
@@ -160,11 +160,12 @@ class GameService
 						'<b>Hint</b>: '.$hint,
 						'html'
 					);
+
 				} else {
 					$this->botApi->sendMessage(
 						$game->chatId,
 						'Noone answered, correct answer was: *'.$question->a1.'*',
-						'html'
+						'markdown'
 					);
 					$this->em->persist($game);
 					$this->em->flush();
