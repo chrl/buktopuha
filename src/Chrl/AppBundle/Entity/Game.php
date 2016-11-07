@@ -78,8 +78,8 @@ class Game
      */
     public $incorrectTries;
 
-	/**
-	 * @ORM\Column(type="string",nullable=true)
-	 */
-	public $hint;
+    /**
+     * @ORM\Column(type="string",nullable=true)
+     */
+    public $hint;
 }

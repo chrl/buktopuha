@@ -26,13 +26,13 @@ class GameService
     /** @var BuktopuhaBotApi */
     private $botApi;
 
-	private $config;
+    private $config;
 
     public function __construct(BuktopuhaBotApi $telegramBotApi, $config, EntityManagerInterface $entityManager)
     {
         $this->em = $entityManager;
         $this->botApi = $telegramBotApi;
-		$this->config = $config;
+        $this->config = $config;
     }
 
 
@@ -100,11 +100,11 @@ class GameService
     }
 
 
-	/**
-	 * Checks if the answer is correct, and asks next question
-	 *
-	 * @param array $message
-	 */
+    /**
+     * Checks if the answer is correct, and asks next question
+     *
+     * @param array $message
+     */
     public function checkAnswer($message)
     {
         $game = $this->findGame($message);
@@ -140,41 +140,39 @@ class GameService
             } else {
                 // Incorrect answer
                 $game->incorrectTries++;
-				$hint = $game->hint;
+                $hint = $game->hint;
 
-				if (mb_substr_count($hint,'*','UTF-8') >= mb_strlen($hint,'UTF-8')/2) {
-					//tell hint
+                if (mb_substr_count($hint, '*', 'UTF-8') >= mb_strlen($hint, 'UTF-8')/2) {
+                    //tell hint
 
-					for($t = 0; $t< mb_strlen($hint);$t++) {
-						if (mb_substr($hint,$t,1,'UTF-8') == '*') {
-							if (rand(0,1)==1) {
-								$hint = mb_substr($hint,0,$t,'UTF-8')
-										.mb_substr($question->a1,$t,1)
-										.mb_substr($hint,$t+1);
-								break;
-							}
-						}
-					}
+                    for ($t = 0; $t< mb_strlen($hint); $t++) {
+                        if (mb_substr($hint, $t, 1, 'UTF-8') == '*') {
+                            if (rand(0, 1)==1) {
+                                $hint = mb_substr($hint, 0, $t, 'UTF-8')
+                                        .mb_substr($question->a1, $t, 1)
+                                        .mb_substr($hint, $t+1);
+                                break;
+                            }
+                        }
+                    }
 
-					$game->hint = $hint;
+                    $game->hint = $hint;
 
-					$this->botApi->sendMessage(
-						$game->chatId,
-						'<b>Hint</b>: '.$hint,
-						'html'
-					);
-
-				} else {
-					$this->botApi->sendMessage(
-						$game->chatId,
-						'Noone answered, correct answer was: *'.$question->a1.'*',
-						'markdown'
-					);
-					$this->em->persist($game);
-					$this->em->flush();
-					$this->askQuestion($game);
-				}
-
+                    $this->botApi->sendMessage(
+                        $game->chatId,
+                        '<b>Hint</b>: '.$hint,
+                        'html'
+                    );
+                } else {
+                    $this->botApi->sendMessage(
+                        $game->chatId,
+                        'Noone answered, correct answer was: *'.$question->a1.'*',
+                        'markdown'
+                    );
+                    $this->em->persist($game);
+                    $this->em->flush();
+                    $this->askQuestion($game);
+                }
             }
 
             $this->em->persist($game);
@@ -182,33 +180,38 @@ class GameService
         }
     }
 
-	/**
-	 * Asks question in the game
-	 *
-	 * @param Game $game
-	 */
+    /**
+     * Asks question in the game
+     *
+     * @param Game $game
+     */
 
     public function askQuestion(Game $game)
     {
-		$question = $this->getRandomQuestion();
+        $question = $this->getRandomQuestion();
 
-		$question->played++;
+        $question->played++;
 
-		$game->lastQuestion = $question->getId();
-		$game->lastQuestionTime = new \DateTime('now');
-		$game->incorrectTries = 0;
-		$game->hint = str_repeat('*',mb_strlen($question->a1,'UTF-8'));
+        $game->lastQuestion = $question->getId();
+        $game->lastQuestionTime = new \DateTime('now');
+        $game->incorrectTries = 0;
+        $game->hint = str_repeat('*', mb_strlen($question->a1, 'UTF-8'));
 
-		$this->em->persist($game);
-		$this->em->persist($question);
-		$this->em->flush();
+        $this->em->persist($game);
+        $this->em->persist($question);
+        $this->em->flush();
 
-        $this->botApi->sendMessage($game->chatId, '*[question]* '.$question->text.' _('.mb_strlen($question->a1,'UTF-8').' letters)_', 'markdown');
+        $this->botApi->sendMessage(
+            $game->chatId,
+            '*[question]* '.
+            $question->text.' _('.mb_strlen($question->a1, 'UTF-8'). ' letters)_',
+            'markdown'
+        );
     }
 
     /**
-	 * Gets random question from database
-	 *
+     * Gets random question from database
+     *
      * @return Question
      * @throws \Doctrine\ORM\NoResultException
      * @throws \Doctrine\ORM\NonUniqueResultException

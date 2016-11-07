@@ -34,12 +34,31 @@ class DeployCommand extends ContainerAwareCommand
         $tgApi = $this->getContainer()->get('buktopuha.telegram_bot_api');
         $games = $gs->getActiveGames();
 
+        if (false == $input->getOption('success')) {
+            if (file_exists('var/logs/deploy.version')) {
+                $version = file_get_contents('var/logs/deploy.version');
+            } else {
+                $version = 0;
+                file_put_contents('var/logs/deploy.version', $version);
+            }
+
+            $version++;
+            file_put_contents('var/logs/deploy.version', $version);
+        }
+        
         /** @var Game $game */
         foreach ($games as $game) {
-            if($input->getOption('success')) {
-                $tgApi->sendMessage($game->chatId, 'Bot is back online! The game continues...');
+            if ($input->getOption('success')) {
+                $tgApi->sendMessage(
+                    $game->chatId,
+                    'Bot is back online (updated to build '.$version.')! The game continues...'
+                );
             } else {
-                $tgApi->sendMessage($game->chatId, 'Bot rebooting due to deploy, sorry. The game will continue once bot boots again.');
+                $tgApi->sendMessage(
+                    $game->chatId,
+                    'Bot rebooting due to deploy (build '.$version
+                    .'), sorry. The game will continue once bot boots again.'
+                );
             }
         }
     }
