@@ -141,7 +141,7 @@ class User
     }
 
     /**
-     * @param int $game
+     * @param Game $game
      */
     public function setGame($game)
     {

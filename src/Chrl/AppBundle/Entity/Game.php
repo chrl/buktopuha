@@ -77,4 +77,9 @@ class Game
      * @ORM\Column(type="smallint", nullable=true)
      */
     public $incorrectTries;
+
+	/**
+	 * @ORM\Column(type="string",nullable=true)
+	 */
+	public $hint;
 }
