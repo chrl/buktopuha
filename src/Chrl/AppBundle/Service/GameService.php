@@ -77,7 +77,7 @@ class GameService
                     : ''
                 )
             );
-            $user->setAlias($message['from']['username']);
+            $user->setAlias(isset($message['from']['username'])? $message['from']['username']:'username');
             $user->setTgId($message['from']['id']);
             $user->setGame($this->findGame($message));
             $user->setChatId($message['chat']['id']);

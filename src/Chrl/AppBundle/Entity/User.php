@@ -158,7 +158,7 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="alias", type="string")
+     * @ORM\Column(name="alias", type="string", nullable=true)
      */
     protected $alias;
 
