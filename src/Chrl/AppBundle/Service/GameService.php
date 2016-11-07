@@ -145,12 +145,15 @@ class GameService
 				if (mb_substr_count($hint,'*','UTF-8') >= mb_strlen($hint,'UTF-8')/2) {
 					//tell hint
 
-					$tPos = rand(0,mb_strlen($question->a1,'UTF-8'));
-
-					while($game->hint == $hint) {
-						$hint = mb_substr($hint,0,$tPos,'UTF-8').
-								mb_substr($question->a1,$tPos,1,'UTF-8').
-								mb_substr($hint,$tPos+1,200,'UTF-8');
+					for($t = 0; $t< mb_strlen($hint);$t++) {
+						if (mb_substr($hint,$t,1,'UTF-8') == '*') {
+							if (rand(0,1)==1) {
+								$hint = mb_substr($hint,0,$t,'UTF-8')
+										.mb_substr($question->a1,$t,1)
+										.mb_substr($hint,$t+1);
+								break;
+							}
+						}
 					}
 
 					$game->hint = $hint;
