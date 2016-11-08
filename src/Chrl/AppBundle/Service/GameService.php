@@ -253,7 +253,7 @@ class GameService
                 )
             )->from('AppBundle:User', 'u')
             ->groupBy('u.id')
-            ->orderBy('u.points')
+            ->orderBy('u.points', 'desc')
             ->setMaxResults(10)
             ->getQuery()
             ->getArrayResult();
