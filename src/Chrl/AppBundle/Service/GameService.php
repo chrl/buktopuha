@@ -242,4 +242,22 @@ class GameService
             ->setMaxResults(1)
             ->getSingleResult();
     }
+
+    public function getTopUsers()
+    {
+        $top = $this->em->createQueryBuilder()
+            ->select(
+                array(
+                    'SUM(u.points) points',
+                    'u.name',
+                )
+            )->from('AppBundle:User', 'u')
+            ->groupBy('u.id')
+            ->orderBy('u.points')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getArrayResult();
+
+        return $top;
+    }
 }
