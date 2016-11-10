@@ -6,7 +6,7 @@ class NextAction extends BaseGameAction implements GameActionInterface
 {
     public function run($message, $user)
     {
-		$game = $this->gameService->findGame($game);
+		$game = $this->gameService->findGame($message);
 
 		$this->botApi->sendMessage(
 			$game->chatId,
