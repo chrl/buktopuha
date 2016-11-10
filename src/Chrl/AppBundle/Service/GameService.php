@@ -140,7 +140,7 @@ class GameService
 
                 $this->botApi->sendMessage(
                     $game->chatId,
-					json_decode('"\ud83d\udc4d"').' Correct! @'.$user->getAlias().' gets *'.
+                    json_decode('"\ud83d\udc4d"').' Correct! @'.$user->getAlias().' gets *'.
                     $question->price.'* and now has *'.$user->getPoints().'* points!',
                     'markdown',
                     false,
