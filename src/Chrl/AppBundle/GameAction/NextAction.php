@@ -8,13 +8,15 @@ class NextAction extends BaseGameAction implements GameActionInterface
     {
         $game = $this->gameService->findGame($message);
 
-        $this->botApi->sendMessage(
-            $game->chatId,
-            'Ok, changing question.',
-            'markdown'
-        );
-        $this->gameService->em->persist($game);
-        $this->gameService->em->flush();
-        $this->gameService->askQuestion($game);
+        if ($game->status == 1) {
+            $this->botApi->sendMessage(
+                $game->chatId,
+                'Ok, changing question.',
+                'markdown'
+            );
+            $this->gameService->em->persist($game);
+            $this->gameService->em->flush();
+            $this->gameService->askQuestion($game);
+        }
     }
 }
