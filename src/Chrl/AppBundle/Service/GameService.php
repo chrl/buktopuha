@@ -138,9 +138,12 @@ class GameService
 
                 $this->em->persist($pl);
 
+				$seconds = new \Datetime('now');
+				$seconds = $seconds->getTimestamp() - $game->lastQuestionTime->getTimestamp();
+
                 $this->botApi->sendMessage(
                     $game->chatId,
-                    json_decode('"\ud83d\udc4d"').' Correct! @'.$user->getAlias().' gets *'.
+                    json_decode('"\ud83d\udc4d"').' Correct in *'.$seconds.'* secs! @'.$user->getAlias().' gets *'.
                     $question->price.'* and now has *'.$user->getPoints().'* points!',
                     'markdown',
                     false,
