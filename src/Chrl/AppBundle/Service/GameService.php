@@ -138,8 +138,8 @@ class GameService
 
                 $this->em->persist($pl);
 
-				$seconds = new \Datetime('now');
-				$seconds = $seconds->getTimestamp() - $game->lastQuestionTime->getTimestamp();
+                $seconds = new \Datetime('now');
+                $seconds = $seconds->getTimestamp() - $game->lastQuestionTime->getTimestamp();
 
                 $this->botApi->sendMessage(
                     $game->chatId,
@@ -152,6 +152,31 @@ class GameService
 
                 $question->correct++;
                 $this->em->persist($question);
+
+                if ($user->fastestAnswer > $seconds) {
+                    $user->fastestAnswer = $seconds;
+                    $user->setPoints($user->getPoints() + 50);
+
+                    $this->em->persist($user);
+
+                    $pl = new PointLog();
+                    $pl->date = new \DateTime("now");
+                    $pl->day = date('d');
+                    $pl->month = date('m');
+                    $pl->year = date('Y');
+                    $pl->points = 50;
+                    $pl->userId = $user->getId();
+                    $pl->gameId = $game->getId();
+
+                    $this->em->persist($pl);
+
+                    $this->botApi->sendMessage(
+                        $game->chatId,
+                        '@'.$user->getAlias().' gets additional *50* points for his fastest answer ever!',
+                        'markdown',
+                        false
+                    );
+                }
 
                 $this->askQuestion($game);
             } else {

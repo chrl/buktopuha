@@ -179,4 +179,9 @@ class User
      * @ORM\OneToMany(targetEntity="Chrl\AppBundle\Entity\Message", mappedBy="user")
      */
     public $messages;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    public $fastestAnswer = 10000;
 }
